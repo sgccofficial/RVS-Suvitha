@@ -1,0 +1,8 @@
+{
+  "name": "RVS Departmental Stores",
+  "description": "A digital storefront for RVS Departmental Stores with a gallery, bill upload, and contact information.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
