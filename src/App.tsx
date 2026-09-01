@@ -14,7 +14,7 @@ const IMAGES = [
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeImage, setActiveImage] = useState(0);
+  const [activeImage, setActiveImage] = useState(1);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -53,6 +53,13 @@ export default function App() {
 
     const gallery = document.getElementById('galleryScroll');
     if (gallery) {
+      if (gallery.children.length > 1) {
+        const secondChild = gallery.children[1] as HTMLElement;
+        gallery.scrollTo({ 
+          left: secondChild.offsetLeft - gallery.offsetLeft - (gallery.offsetWidth / 2) + (secondChild.offsetWidth / 2), 
+          behavior: 'auto' 
+        });
+      }
       gallery.addEventListener('scroll', handleScroll);
       return () => gallery.removeEventListener('scroll', handleScroll);
     }
@@ -101,7 +108,7 @@ export default function App() {
           <div className="flex justify-between items-center h-20">
             {/* Brand */}
             <div className="flex items-center gap-4">
-              <img src="/gallery-2.jpg" alt="RVS Logo" className="h-12 w-12 rounded-xl object-cover shadow-sm" />
+              <img src="/gallery-1.jpg" alt="RVS Logo" className="h-12 w-12 rounded-xl object-cover shadow-sm" />
               <div className="flex flex-col">
                 <span className="text-xl font-black tracking-tight text-sky-500 leading-tight">RVS</span>
                 <span className="text-xs font-medium text-slate-500 uppercase tracking-widest">Departmental Stores</span>
@@ -144,16 +151,16 @@ export default function App() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden pt-8 pb-16">
+        <section className="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32 lg:pt-24 lg:pb-36">
           {/* Logo Background */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
-            style={{ backgroundImage: "url('/gallery-2.jpg')" }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
+            style={{ backgroundImage: "url('/gallery-1.jpg')" }}
           />
-          <div className="absolute inset-0 bg-sky-900/40" />
+          <div className="absolute inset-0 bg-slate-900/60" />
           
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-md">
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white w-full">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight drop-shadow-xl text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
               RVS Departmental Stores
             </h1>
             <p className="text-lg md:text-2xl text-sky-50 font-medium max-w-2xl mx-auto mb-10 drop-shadow-md">
@@ -183,7 +190,7 @@ export default function App() {
             <div className="relative">
               <div 
                 id="galleryScroll"
-                className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0"
+                className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar px-[7.5vw] sm:px-[calc(50%-200px)]"
                 style={{ scrollbarWidth: 'none' }}
               >
                 {IMAGES.map((src, index) => (
@@ -404,6 +411,13 @@ export default function App() {
                   rating: 5,
                   text: "",
                   color: "bg-indigo-100 text-indigo-700 border-indigo-200"
+                },
+                {
+                  name: "Aakash M",
+                  date: "2 months ago",
+                  rating: 5,
+                  text: "Great selection and fast checkout.",
+                  color: "bg-purple-100 text-purple-700 border-purple-200"
                 }
               ].map((review, idx) => (
                 <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/60 flex flex-col h-full hover:shadow-md transition-shadow">
@@ -436,14 +450,15 @@ export default function App() {
                 </div>
               ))}
               
-              {/* QR Code Card */}
-              <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 flex flex-col items-center justify-center text-center h-full hover:shadow-md transition-all p-2">
-                <img 
-                  src="/google-qr.png" 
-                  alt="Google Reviews QR Code" 
-                  className="w-full h-auto object-contain rounded-xl"
-                />
-              </div>
+            </div>
+
+            {/* Google QR Card - Separated */}
+            <div className="mt-8 bg-white rounded-2xl shadow-sm border border-slate-200/60 flex flex-col items-center justify-center text-center max-w-sm mx-auto hover:shadow-md transition-all p-2">
+              <img 
+                src="/google-qr.png" 
+                alt="Google Reviews QR Code" 
+                className="w-full h-auto object-contain rounded-xl"
+              />
             </div>
           </div>
         </section>
@@ -545,10 +560,10 @@ export default function App() {
       <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3 opacity-90">
-            <img src="/gallery-2.jpg" alt="Logo" className="h-8 w-8 rounded-lg object-cover" />
+            <img src="/gallery-1.jpg" alt="Logo" className="h-8 w-8 rounded-lg object-cover" />
             <span className="font-bold text-white tracking-wide">RVS Departmental Stores</span>
           </div>
-          <p className="text-sm font-medium">
+          <p className="text-sm font-medium md:pr-20">
             ©SGCC OFFICIAL
           </p>
         </div>
