@@ -107,7 +107,7 @@ export default function App() {
     if (hasError) return;
 
     const text = `*Bill Upload*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Pincode:* ${pincode}\n*Message:* ${message}`;
-    const url = "https://wa.me/919444517649?text=" + encodeURIComponent(text);
+    const url = "https://wa.me/919894867649?text=" + encodeURIComponent(text);
     window.open(url, "_blank");
   };
 
@@ -502,13 +502,13 @@ export default function App() {
                 {/* 1. Call & Email */}
                 <div className="grid sm:grid-cols-2 gap-6">
                   {/* Phone */}
-                  <a href="tel:9942025493" className="bg-slate-50 rounded-2xl p-6 flex gap-4 border border-slate-100 hover:bg-sky-50 hover:border-sky-300 hover:shadow-md hover:-translate-y-0.5 active:bg-sky-100 active:border-sky-400 active:shadow-sm active:translate-y-0 transition-all items-center group relative">
+                  <a href="tel:+919894867649" className="bg-slate-50 rounded-2xl p-6 flex gap-4 border border-slate-100 hover:bg-sky-50 hover:border-sky-300 hover:shadow-md hover:-translate-y-0.5 active:bg-sky-100 active:border-sky-400 active:shadow-sm active:translate-y-0 transition-all items-center group relative">
                     <div className="h-12 w-12 rounded-xl bg-green-100 text-green-700 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-100 group-hover:text-sky-600 transition-colors">
                       <Phone className="h-6 w-6" />
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-900 mb-1 text-lg group-hover:text-sky-700 transition-colors">Call us</h3>
-                      <span className="text-slate-600 group-hover:text-sky-600 transition-colors">+91 99420 25493</span>
+                      <span className="text-slate-600 group-hover:text-sky-600 transition-colors">+91 98948 67649</span>
                     </div>
                     <ArrowUpRight className="absolute top-4 right-4 h-5 w-5 text-sky-400 group-hover:text-sky-600 group-active:text-sky-700 transition-colors" />
                   </a>
@@ -597,14 +597,14 @@ export default function App() {
       {/* Floating Action Buttons */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
         <a 
-          href="tel:+919942025493"
+          href="tel:+919894867649"
           className="bg-white text-slate-700 p-3.5 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform flex items-center justify-center border border-slate-200 group"
           aria-label="Call us"
         >
           <Phone className="w-7 h-7 fill-current" />
         </a>
         <a 
-          href="https://wa.me/919444517649" 
+          href="https://wa.me/919894867649" 
           target="_blank" 
           rel="noreferrer"
           className="bg-[#25D366] text-white p-3.5 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform flex items-center justify-center group"
