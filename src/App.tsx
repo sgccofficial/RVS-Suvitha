@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 
 const IMAGES = [
+  '/gallery-main.jpg',
   '/gallery-1.jpg',
   '/gallery-2.jpg',
   '/gallery-3.jpg',
@@ -14,7 +15,7 @@ const IMAGES = [
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeImage, setActiveImage] = useState(1);
+  const [activeImage, setActiveImage] = useState(2);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -53,10 +54,10 @@ export default function App() {
 
     const gallery = document.getElementById('galleryScroll');
     if (gallery) {
-      if (gallery.children.length > 1) {
-        const secondChild = gallery.children[1] as HTMLElement;
+      if (gallery.children.length > 2) {
+        const centerChild = gallery.children[2] as HTMLElement;
         gallery.scrollTo({ 
-          left: secondChild.offsetLeft - gallery.offsetLeft - (gallery.offsetWidth / 2) + (secondChild.offsetWidth / 2), 
+          left: centerChild.offsetLeft - gallery.offsetLeft - (gallery.offsetWidth / 2) + (centerChild.offsetWidth / 2), 
           behavior: 'auto' 
         });
       }
@@ -118,7 +119,7 @@ export default function App() {
           <div className="flex justify-between items-center h-20">
             {/* Brand */}
             <div className="flex items-center gap-4">
-              <img src="/gallery-1.jpg" alt="RVS Logo" className="h-12 w-12 rounded-xl object-cover shadow-sm" />
+              <img src="/gallery-main.jpg" alt="RVS Logo" className="h-12 w-12 rounded-xl object-cover shadow-sm" />
               <div className="flex flex-col">
                 <span className="text-xl font-black tracking-tight text-sky-500 leading-tight">RVS</span>
                 <span className="text-xs font-medium text-slate-500 uppercase tracking-widest">Departmental Stores</span>
@@ -165,7 +166,7 @@ export default function App() {
           {/* Logo Background */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
-            style={{ backgroundImage: "url('/gallery-1.jpg')" }}
+            style={{ backgroundImage: "url('/gallery-main.jpg')" }}
           />
           <div className="absolute inset-0 bg-slate-900/60" />
           
@@ -214,8 +215,8 @@ export default function App() {
                       alt={`Gallery ${index + 1}`}
                       className="absolute inset-0 w-full h-full object-cover"
                       onError={(e) => {
-                        // Fallback for missing images in preview
-                        (e.target as HTMLImageElement).src = 'https://placehold.co/800x600/f1f5f9/94a3b8?text=Image+' + (index+1);
+                        // Fallback for missing images in preview until uploaded
+                        (e.target as HTMLImageElement).src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%23f1f5f9"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="%2394a3b8" font-weight="600">Gallery Slot ${index} (Awaiting Image)</text></svg>`;
                       }}
                     />
                   </div>
@@ -584,7 +585,7 @@ export default function App() {
       <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3 opacity-90">
-            <img src="/gallery-1.jpg" alt="Logo" className="h-8 w-8 rounded-lg object-cover" />
+            <img src="/gallery-main.jpg" alt="Logo" className="h-8 w-8 rounded-lg object-cover" />
             <span className="font-bold text-white tracking-wide">RVS Departmental Stores</span>
           </div>
           <p className="text-sm font-medium md:pr-20">
