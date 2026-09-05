@@ -7,7 +7,9 @@ import {
 const IMAGES = [
   '/gallery-1.jpg',
   '/gallery-2.jpg',
-  '/gallery-3.jpg'
+  '/gallery-3.jpg',
+  '/gallery-4.jpg',
+  '/gallery-5.jpg'
 ];
 
 export default function App() {
@@ -62,6 +64,16 @@ export default function App() {
       return () => gallery.removeEventListener('scroll', handleScroll);
     }
   }, []);
+
+  const scrollToSlide = (index: number) => {
+    const gallery = document.getElementById('galleryScroll');
+    if (!gallery || !gallery.children[index]) return;
+    const target = gallery.children[index] as HTMLElement;
+    gallery.scrollTo({
+      left: target.offsetLeft - gallery.offsetLeft - (gallery.offsetWidth / 2) + (target.offsetWidth / 2),
+      behavior: 'smooth'
+    });
+  };
 
   const handleWhatsAppSend = () => {
     const { name, phone, pincode, message } = formData;
@@ -188,13 +200,14 @@ export default function App() {
             <div className="relative">
               <div 
                 id="galleryScroll"
-                className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar px-[7.5vw] sm:px-[calc(50%-200px)]"
+                className="flex overflow-x-auto gap-6 pb-3 snap-x snap-mandatory hide-scrollbar px-[7.5vw] sm:px-[calc(50%-200px)]"
                 style={{ scrollbarWidth: 'none' }}
               >
                 {IMAGES.map((src, index) => (
                   <div 
                     key={index}
-                    className={`relative flex-shrink-0 w-[85vw] sm:w-[400px] aspect-[4/3] snap-center rounded-2xl overflow-hidden transition-all duration-500 ${activeImage === index ? 'opacity-100 shadow-2xl scale-100' : 'opacity-40 scale-95 shadow-md'}`}
+                    onClick={() => scrollToSlide(index)}
+                    className={`relative flex-shrink-0 w-[85vw] sm:w-[400px] aspect-[4/3] snap-center rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer ${activeImage === index ? 'opacity-100 shadow-2xl scale-100' : 'opacity-40 scale-95 shadow-md hover:opacity-70'}`}
                   >
                     <img 
                       src={src} 
@@ -206,6 +219,19 @@ export default function App() {
                       }}
                     />
                   </div>
+                ))}
+              </div>
+
+              {/* Minimal dot indicators */}
+              <div className="flex justify-center items-center gap-1.5 pt-1" id="gallery-dots">
+                {IMAGES.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => scrollToSlide(index)}
+                    aria-label={`Slide ${index + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${activeImage === index ? 'w-5 bg-sky-500' : 'w-1.5 bg-slate-200 hover:bg-slate-300'}`}
+                  />
                 ))}
               </div>
             </div>
